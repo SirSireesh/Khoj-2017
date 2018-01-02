@@ -48,12 +48,27 @@ ubyte[] colourMandelbrot(in uint width, in uint height) @fastmath
 	return output;
 }
 
-void main()
+void main(string[] args)
 {
 	import std.stdio : File;
+	import std.getopt;
+
+	uint width = 720, height = 576;
+
+	auto helpInformation = getopt(
+			args,
+			"width|w", "width of image", &width,
+			"height|h", "height of image", &height);
+
+	if (helpInformation.helpWanted) {
+		defaultGetoptPrinter("madelbrot\nUsage : ./madelbrot",
+				helpInformation.options);
+		return;
+	}
+
 	auto file  = File("mandelbrot_8K.ppm", "wb");
 	//ppm Format:
 	//P6, comment, rows cols, colors
-	file.writef!"P6\n#\n%d %d\n255\n"(8192, 4320);
-	file.rawWrite(colourMandelbrot(8192, 4320));
+	file.writef!"P6\n#\n%d %d\n255\n"(width, height);
+	file.rawWrite(colourMandelbrot(width, height));
 }
