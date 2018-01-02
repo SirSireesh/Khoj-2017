@@ -51,7 +51,7 @@ ubyte[] colourMandelbrot(in uint width, in uint height) @fastmath
 void main()
 {
 	import std.stdio : File;
-	auto file  = File("/Volumes/Data/Temp/Khoj/mandelbrot_8K.ppm", "wb");
+	auto file  = File("mandelbrot_8K.ppm", "wb");
 	//ppm Format:
 	//P6, comment, rows cols, colors
 	file.writef!"P6\n#\n%d %d\n255\n"(8192, 4320);
