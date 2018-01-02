@@ -64,9 +64,8 @@ void diamondStep(ref double[][] heightmap, ulong side_length, ulong half_side, i
 				heightmap[i][(j - half_side + $ - 1) % ($ - 1)];
 
 			avg = avg / 4.0 + uniform!"[]"(-range / 2, range, gen);
-			if (isInfinity(avg) || isNaN(avg))
-				assert(false, "Something went wrong, avg is NaN or inf");
-				//avg = 1.0 + uniform!"[]"(-range, range, gen);
+			assert(!isInfinity(avg) && !isNan(avg), "Something went wrong, avg is NaN or inf");
+
 			heightmap[i][j] = avg;
 
 			if (i == 0)
