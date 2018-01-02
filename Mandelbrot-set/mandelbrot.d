@@ -66,7 +66,7 @@ void main(string[] args)
 		return;
 	}
 
-	auto file  = File("mandelbrot_8K.ppm", "wb");
+	auto file  = File("mandelbrot_" ~ width.to!string ~ "x" ~ height.to!string ~ ".ppm", "wb");
 	//ppm Format:
 	//P6, comment, rows cols, colors
 	file.writef!"P6\n#\n%d %d\n255\n"(width, height);
