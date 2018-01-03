@@ -1,10 +1,12 @@
 # Terrain Generator
 
 This program uses the [diamond-square](https://en.wikipedia.org/wiki/Diamond-square_algorithm) algorithm
-to genrate a 3d mountaious terrain. The terrain is then rendered to the screen with `OpenGL` and `glut`.
+to generate a 3d mountainous terrain. The terrain is then rendered to the screen with `OpenGL` and `glut`.
 
 The purpose of the program is to show that a seemingly complex terrain can be quickly generated with
-a rather simple algorithm. It was inspired by a scene in [The Pixar Story](https://www.themoviedb.org/movie/15302-the-pixar-story) which showed a mountain being generated from a triangle.
+a rather simple algorithm. It was inspired by a scene in
+[The Pixar Story](https://www.themoviedb.org/movie/15302-the-pixar-story) which showed a mountain being
+generated from a triangle.
 
 There are two parts to this program. The first one, which generates the terrain was written in `D` and
 later translated to `C++` due to difficulty of linking `C` libraries with `D` programs on Windows.
