@@ -2,7 +2,7 @@
 #include <vector>
 #include <cmath>
 
-double getNeighboursAVG(std::vector<std::vector<double>> &heightmap, unsigned x, unsigned y)
+double averageOfNeighbours(std::vector<std::vector<double>> &heightmap, unsigned x, unsigned y)
 {
 	return (heightmap[x - 1][y] + heightmap[x][y - 1] + heightmap[x + 1][y] + heightmap[x][y + 1] +
 			heightmap[x - 1][y - 1] + heightmap[x - 1][y - 1] + heightmap[x+1][y + 1] + heightmap[x + 1][y + 1]) / 8;
@@ -12,7 +12,7 @@ void smoothen(std::vector<std::vector<double>> &heightmap)
 {
 	for (unsigned i = 1U; i < heightmap.size() - 1U; ++i) {
 		for (unsigned j = 1U; j < heightmap.size() - 1U; ++j) {
-			double v = getNeighboursAVG(heightmap, i, j);
+			double v = averageOfNeighbours(heightmap, i, j);
 			heightmap[i][j] = v;
 		}
 	}

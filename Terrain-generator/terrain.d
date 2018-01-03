@@ -36,14 +36,14 @@ private auto smoothen(double[][] heightmap) @safe
 {
 	for (uint i = 1U; i < heightmap.length - 1U; i++) {
 		for (uint j = 1U; j < (heightmap.length - 1U); j++){
-			double v = getNeighboursAVG(heightmap, i, j);
+			double v = averageOfNeighbours(heightmap, i, j);
 			heightmap[i][j] = v;
 		}
 	}
 	return heightmap;
 }
 
-private double getNeighboursAVG(ref double[][] heightmap, uint x, uint y) @safe
+private double averageOfNeighbours(ref double[][] heightmap, uint x, uint y) @safe
 {
 	return (heightmap[x - 1][y] + heightmap[x][y - 1] + heightmap[x + 1][y] + heightmap[x][y + 1] +
 			heightmap[x - 1][y - 1] + heightmap[x - 1][y - 1] + heightmap[x+1][y + 1] + heightmap[x + 1][y + 1]) / 8;
