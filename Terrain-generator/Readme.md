@@ -34,8 +34,7 @@ The second part is the renderer. It is written in `C` with `OpenGL` and `GLUT`.
      1. with `D`:
 
         ```sh
-        dmd terrain.d terrain_gl.o -O -release -inline -of=terrain -L/path/to/OpenGl_d_bindings
-        -L/path/to/freeglut_d_bindings
+        dmd terrain.d terrain_gl.o -O -release -inline -of=terrain -L/path/to/OpenGl -L/path/to/freeglut
         ```
        
         _On macOS_:
