@@ -33,22 +33,9 @@ struct {
 	size_t length;
 } map;
 
-enum {
-	ROTATE_RIGHT = -1,
-	ROTATE_LEFT = 1
-} direction;
-
-static inline double scale(double valueIn, double baseMin, double baseMax, double limitMin, double limitMax) {
-	return ((limitMax - limitMin) * (valueIn - baseMin) / (baseMax - baseMin)) + limitMin;
-}
-
-static void colour(float c1, float c2)
+static inline double scale(double valueIn, double baseMin, double baseMax, double limitMin, double limitMax)
 {
-	/*if (fabs(c1) < 0.001 && fabs(c2) < 0.001)
-		glColor3f(0.5, 0.5, 0.5);
-	else
-		glColor3f(fabs(c1) * 8, fabs(c2) * 16, 0.1);*/
-	glColor3f(0.0, 0.5, 0.0);
+	return ((limitMax - limitMin) * (valueIn - baseMin) / (baseMax - baseMin)) + limitMin;
 }
 
 static void motion(int x, int y)
@@ -125,25 +112,21 @@ static void drawMap(size_t length, double *terrain[static length])
 	glLineWidth(line_width);
 	glBegin(GL_LINES);
 
-	colour(0.0, 0.0);
+	glColor3f(0.0, 0.5, 0.0);
+
 	for (size_t i = 0; i < length - 1; ++i) {
 		double xc = scale(i, 0, length - 2, -1.0, 1.0);
 		for (size_t j = 0; j < length - 1; ++j) {
 			double yc = scale(j, 0, length - 2, -1.0, 1.0);
 			//Virtical lines
-
 			glVertex3f(xc, terrain[i][j], yc);
 			glVertex3f(xc, terrain[i][j + 1], yc + next_point);
 
 			//horizontal lines
-			//colour(terrain[i][j], terrain[i + 1][j]);
-
 			glVertex3f(xc, terrain[i][j], yc);
 			glVertex3f(xc + next_point, terrain[i + 1][j], yc);
 
 			//diagonal lines
-			//colour(terrain[i][j], terrain[i + 1][j + 1]);
-
 			glVertex3f(xc, terrain[i][j], yc);
 			glVertex3f(xc + next_point, terrain[i + 1][j + 1], yc + next_point);
 		}
@@ -163,9 +146,6 @@ static void display(void)
 		if (rotate) {
 			glRotated((GLdouble) spinxface, 1.0, 0.0, 0.0);
 			glRotated((GLdouble) spinyface, 0.0, 1.0, 0.0);
-			/*glRotatef(app_state.x, 1, 0, 0);
-			glRotatef(app_state.y, 0, 1, 0);
-			glRotatef(app_state.z, 0, 0, 1);*/
 		}
 		if (to_scale_up) {
 			glScalef(1.11, 1.11, 1.11);
@@ -219,12 +199,9 @@ extern void drawTerrain(size_t length, double *heightmap[static length])
 	glutDisplayFunc(display);
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);
-	//glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(special_keyboard);
 	glutIdleFunc(glutPostRedisplay);
-
-	glEnable(GL_DEPTH_TEST);
 
 	glutMainLoop();
 }

@@ -76,7 +76,7 @@ void diamondStep(ref double[][] heightmap, ulong side_length, ulong half_side, i
 				heightmap[i][(j - half_side + $ - 1) % ($ - 1)];
 
 			avg = avg / 4.0 + uniform!"[]"(-range / 2, range, gen);
-			assert(!isInfinity(avg) && !isNan(avg), "Something went wrong, avg is NaN or inf");
+			assert(!isInfinity(avg) && !isNaN(avg), "Something went wrong, avg is NaN or inf");
 
 			heightmap[i][j] = avg;
 
@@ -124,7 +124,7 @@ void draw(double[][] terrain) nothrow @safe
 	drawTerrain(terrain.length, terrain.makeTerrainPointer);
 }
 
-void main(string args[])
+void main(string[] args)
 {
 	import std.stdio : writeln;
 

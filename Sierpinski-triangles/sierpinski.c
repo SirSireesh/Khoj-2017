@@ -36,15 +36,6 @@ void mouse(int button, int state, int x, int y)
 
 void drawSubTriangle(float x1, float x2, float x3, float y1, float y2, float y3)
 {
-	//random values that result in a cyanish colour
-	glColor3f(0.4, 0.8, 0.8);
-	//if we want colours, we need to ensure that
-	//the colour does not cause issues with redraws
-	//glColor3f(fabs(y1) * 0.8 - fabs(x1), green, fabs(y2) + fabs(x3) * 0.1);
-
-	//draw lines around the borders
-	glLineWidth(smallest_length);
-	//glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_LINES);
 	{
 		glVertex3f(x1, y1, 0.0);
@@ -61,6 +52,14 @@ void drawSubTriangle(float x1, float x2, float x3, float y1, float y2, float y3)
 
 void drawSierpinski(const float x1, const float x2, const float x3, const float y1, const float y2, const float y3)
 {
+	//random values that result in a cyanish colour
+	glColor3f(0.4, 0.8, 0.8);
+	//if we want colours, we need to ensure that
+	//the colour does not cause issues with redraws
+
+	//draw lines around the borders
+	glLineWidth(smallest_length);
+
 	drawSubTriangle(x1, x2, x3, y1, y2, y3);
 	//ensure that the size of the triangles is not too small
 	//check that the side length of each triangle is large enough
@@ -78,7 +77,7 @@ void display(void)
 	//the points for the initial triangle
 	const float ox1 = -1.0, ox2 = 1.0, ox3 = 0.0, oy1 = -1.0, oy2 = -1.0, oy3 = 1;
 
-	//glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_LINE_SMOOTH);
 	if (keep_zooming) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		glColor3f(0.0f, 0.0f, 0.0f);
