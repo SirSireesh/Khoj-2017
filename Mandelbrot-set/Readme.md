@@ -12,7 +12,7 @@ This file is an image of the Madelbrot set.
 
 command line:
 
-`ldc madelbrot.d -O3 -release -inline`
+`ldc mandelbrot.d -O3 -release -inline`
 
 ### Usage
 
